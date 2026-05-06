@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:meals/screens/categories.dart';
 import 'package:meals/screens/tabs.dart';
 import 'package:flutter/services.dart';
 
@@ -13,13 +13,14 @@ final theme = ThemeData(
   textTheme: GoogleFonts.latoTextTheme(),
 );
 void main() {
+  
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
-  ]).then((value) => runApp(const MyApp()));
+  ]).then((value) => runApp(ProviderScope(child: const MyApp())));
 }
 
 class MyApp extends StatelessWidget {
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: theme,
       home: OrientationBuilder(
         builder: (context, orientation) {
